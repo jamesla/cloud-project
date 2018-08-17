@@ -8,7 +8,7 @@ The first part of a project for learning cloud infrastructure.
 4. Fork my repository (TODO).
 5. Deploy the terraform template to your account.
 6. Modify the template to deploy the following environment:
-![Kiku](images/project-1.jpg)
+![Kiku](images/project-1.png)
 7. Ensure that you can ssh to the jumpbox.
 8. Ensure that you can reach the nginx default web page with a web browser.
 9. Send me a pull request and I will review.
