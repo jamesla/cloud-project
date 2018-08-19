@@ -1,6 +1,6 @@
 # Learning infrastructure as code
 
-The first part of a project for learning infrastructure as code.
+The first part of a project for learning infrastructure as code. If you get stuck at any part please open an issue using the issue tab above.
 
 ## Setting up
 
