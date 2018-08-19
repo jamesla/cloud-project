@@ -18,7 +18,7 @@ aws configure
 aws s3 ls
 ```
 
-5. Fork this repository (log into github and click fork button).
+5. Log into Github and make a [fork](http://bfy.tw/JTbVof) this repository to your own account.
 
 6. Clone your forked repository into carverlinux
 
