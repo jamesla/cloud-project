@@ -51,3 +51,7 @@ terraform apply
 ```
 ssh -i %YOUR_GENERATED_PRIVATE_KEY% ubuntu@x.x.x.x
 ```
+
+## Part 2 - Web server
+
+Coming soon
