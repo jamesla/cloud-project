@@ -1,24 +1,23 @@
-# Cloud-project
+# Learning infrastructure as code
 
-The first part of a project for learning cloud infrastructure.
+The first part of a project for learning infrastructure as code.
 
-### Before starting
+## Part 1 - Connectivity
 
-1. Add me on github (http://www.github.com/jamesla).
-2. Install carverlinux (http://www.github.com/jamesla/carverlinux).
-3. Sign up for a free amazon account. (https://aws.amazon.com/free).
+Although the jumpbox is running you will notice that if you try and ssh into it's public ip address you will get access denied. Your first task is to update the stack so that it deploys the jumpbox with your personal ssh public key installed so that you can connect to the jumpbox.
 
-### Part 1
-4. Fork my repository (TODO).
-5. Deploy the terraform template to your account.
-6. Ensure you can ssh to the server
+1. Create your own ssh keypair if you don't already have one. http://bfy.tw/JTax
 
-### Part 2
-6. Modify the template to deploy the following environment:
-![Kiku](images/project-1.png)
-7. Ensure that you can ssh to the jumpbox.
-8. Ensure that you can reach the nginx default web page with a web browser.
-9. Send me a pull request and I will review.
+2. Add your ssh key to the main.tf terraform template. [Terraform Keypair Documentation](https://www.terraform.io/docs/providers/aws/r/key_pair.html)
 
-### Next steps
-10. The next part will introduce load balancers, autoscaling and self healing (coming soon)
+3. Update main.tf to install your uploaded ssh public key onto the jumpbox upon creation. [Terraform Instance Documentation](https://www.terraform.io/docs/providers/aws/r/instance.html)
+
+4. Deploy the template:
+```
+terraform apply
+```
+
+5. Ensure you can ssh to your jumpbox:
+```
+ssh -i %YOUR_GENERATED_PRIVATE_KEY% ubuntu@x.x.x.x
+```
