@@ -52,6 +52,8 @@ terraform apply
 ssh -i %YOUR_GENERATED_PRIVATE_KEY% ubuntu@x.x.x.x
 ```
 
+6. Open a [pull request](http://bfy.tw/4QAt) and I will perform a code review.
+
 ## Part 2 - Web server
 
 Coming soon...
