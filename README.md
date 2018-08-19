@@ -34,7 +34,7 @@ terraform apply
 
 ## Part 1 - Connectivity
 
-![Kiku](images/image-1.jpg)
+![Kiku](images/image-1.png)
 
 Although the jumpbox is running you will notice that if you try and ssh into it's public ip address you will get access denied. Your first task is to update the stack so that it deploys the jumpbox with your personal ssh public key installed so that you can connect to the jumpbox.
 
@@ -59,6 +59,6 @@ ssh -i %YOUR_GENERATED_PRIVATE_KEY% ubuntu@x.x.x.x
 
 ## Part 2 - Web server
 
-![Kiku](images/image-2.jpg)
+![Kiku](images/image-2.png)
 
 Coming soon...
