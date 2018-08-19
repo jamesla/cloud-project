@@ -4,17 +4,16 @@ The first part of a project for learning infrastructure as code.
 
 ## Setting up
 
-1. Install carverlinux (VM with all tools preinstalled) and get it up and running.
+1. Install [carverlinux](http://www.github.com/jamesla/carverlinux).It's a VM with lots of devopsy tools preinstalled. Get it up and running.
 
 2. Sign up for a free amazon account. (https://aws.amazon.com/free).
-
 
 3. Configure the aws command line tool in carverlinux (use region ap-southeast-2):
 ```
 aws configure
 
 ```
-4. Verify the aws command line tool is working correctly with:
+4. Verify the aws command line tool is working correctly with (it works if it doesn't throw an error):
 ```
 aws s3 ls
 ```
