@@ -18,7 +18,7 @@ aws configure
 aws s3 ls
 ```
 
-5. Log into Github and make a [fork](http://bfy.tw/JTbVof) this repository to your own account.
+5. Log into Github and make a [fork](http://bfy.tw/JTbV) this repository to your own account.
 
 6. Clone your forked repository onto your carverlinux vm.
 ```
@@ -54,4 +54,4 @@ ssh -i %YOUR_GENERATED_PRIVATE_KEY% ubuntu@x.x.x.x
 
 ## Part 2 - Web server
 
-Coming soon
+Coming soon...
