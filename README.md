@@ -11,8 +11,8 @@ The first part of a project for learning infrastructure as code.
 3. Configure the aws command line tool in carverlinux (use region ap-southeast-2):
 ```
 aws configure
-
 ```
+
 4. Verify the aws command line tool is working correctly with (it works if it doesn't throw an error):
 ```
 aws s3 ls
@@ -20,15 +20,16 @@ aws s3 ls
 
 5. Log into Github and make a [fork](http://bfy.tw/JTbVof) this repository to your own account.
 
-6. Clone your forked repository into carverlinux
-
+6. Clone your forked repository onto your carverlinux vm.
 ```
 git clone https://github.com/%YOUR_USERNAME%/cloud-project.git
 ```
+
 7. From the source directory deploy the stack into your aws account:
 ```
 terraform apply
 ```
+
 8. Log into the AWS console and ensure that the jumpbox has been deployed successfully.
 
 ## Part 1 - Connectivity
