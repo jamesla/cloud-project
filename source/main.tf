@@ -29,12 +29,36 @@ data "aws_subnet" "subnet" {
 }
 
 resource "aws_security_group" "jumpbox" {
-  name = "jumpbox"
-  vpc_id      = "${data.aws_vpc.vpc.id}"
+  vpc_id = "${data.aws_vpc.vpc.id}"
 
   ingress {
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "webserver" {
+  vpc_id = "${data.aws_vpc.vpc.id}"
+  
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -55,4 +79,54 @@ resource "aws_instance" "jumpbox" {
     "${aws_security_group.jumpbox.id}"
   ]
   associate_public_ip_address = "true"
+  key_name = "jaap-key"
+}
+
+resource "aws_instance" "webserver-1" {
+  ami           = "${data.aws_ami.ubuntu.id}"
+  instance_type = "t2.micro"
+  subnet_id     = "${data.aws_subnet.subnet.id}"
+  security_groups = [
+    "${aws_security_group.webserver.id}"
+  ]
+  associate_public_ip_address = "true"
+  key_name = "jaap-key"
+
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt install -y nginx
+              sudo service start nginx        
+              EOF
+}
+
+resource "aws_instance" "webserver-2" {
+  ami           = "${data.aws_ami.ubuntu.id}"
+  instance_type = "t2.micro"
+  subnet_id     = "${data.aws_subnet.subnet.id}"
+  security_groups = [
+    "${aws_security_group.webserver.id}"
+  ]
+  associate_public_ip_address = "true"
+  key_name = "jaap-key"
+
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt install -y nginx
+              sudo service start nginx        
+              EOF
+}
+
+resource "aws_key_pair" "jaap" {
+  key_name = "jaap-key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHax/vwh/MUwHGpN+DFhfPkUuna/uCn6CGYKiX2mauGMACR4XHtqGIgRdEzDg8UPJ6P8RsWFLbBLTtbAQVqBvnxcZMQRIDywWzi5wxM4ieDbDTZmT6D+WMyLahmPGZS0OgCv/a1F/hkW3t7cRjc5JG5HAlWbfuP0eSvtE7LPfh0Ngu6oxtiH8bvY6MjK3u0W5eDSftUcNozkqMbFKyv/iv18VZGquPhj4I+GfoV1Xhftl3y0Q03SxNTTxJXxVuaPqJhDTlxZ3ohRqdnpzAKH30oDVerMGhwicwwmxbbNBfqHYCgHWxcYALuZxhQ12Xbmru+GwU8s5+fI5b6BhPSVbz vagrant@carverlinux-devops-infra"
+}
+
+output "public_ip jumpbox" {
+  value = "${aws_instance.jumpbox.public_ip}"
+}
+output "public_ip webserver-1" {
+  value = "${aws_instance.webserver-1.public_ip}"
+}
+output "public_ip webserver-2" {
+  value = "${aws_instance.webserver-2.public_ip}"
 }
