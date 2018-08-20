@@ -55,4 +55,14 @@ resource "aws_instance" "jumpbox" {
     "${aws_security_group.jumpbox.id}"
   ]
   associate_public_ip_address = "true"
+  key_name = "jaap-key"
+}
+
+resource "aws_key_pair" "jaap" {
+  key_name = "jaap-key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHax/vwh/MUwHGpN+DFhfPkUuna/uCn6CGYKiX2mauGMACR4XHtqGIgRdEzDg8UPJ6P8RsWFLbBLTtbAQVqBvnxcZMQRIDywWzi5wxM4ieDbDTZmT6D+WMyLahmPGZS0OgCv/a1F/hkW3t7cRjc5JG5HAlWbfuP0eSvtE7LPfh0Ngu6oxtiH8bvY6MjK3u0W5eDSftUcNozkqMbFKyv/iv18VZGquPhj4I+GfoV1Xhftl3y0Q03SxNTTxJXxVuaPqJhDTlxZ3ohRqdnpzAKH30oDVerMGhwicwwmxbbNBfqHYCgHWxcYALuZxhQ12Xbmru+GwU8s5+fI5b6BhPSVbz vagrant@carverlinux-devops-infra"
+}
+
+output "public_ip" {
+  value = "${aws_instance.jumpbox.public_ip}"
 }
